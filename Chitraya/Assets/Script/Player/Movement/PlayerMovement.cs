@@ -6,37 +6,37 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 direction;
     [SerializeField] private Vector2 lastDirection;
 
+    [Header("Ground Check")]
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private float groundRadius;
+    [SerializeField] private bool isGrounded;
+
 
     [Header("State Setting")]
+    [SerializeField] private bool onJumping;
     [SerializeField] private bool onDashing;
     [SerializeField] private bool onWindVent;
 
 
     [Header("Reference")]
-
     [SerializeField] private PlayerMovementStat stat;
-
     [SerializeField] private Rigidbody2D rb;
 
     public void Update()
     {
         rb.linearVelocity = new Vector2(direction.x * stat.maxRunSpeed , rb.linearVelocityY);
-
-        if (onWindVent)
-        {
-            rb.AddForce(Vector2.up * stat.windForce, ForceMode2D.Force);
-        }
-
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundRadius, stat.groundLayer);
     }
 
 
 
     public void PlayerJump()
     {
-        rb.linearVelocityY = stat.jumpForced;
+        if (isGrounded)
+        {
+            rb.linearVelocityY = stat.jumpForced;
+        }
     }
-
-
 
     public void SetDirection(Vector2 dir)
     {
@@ -47,24 +47,12 @@ public class PlayerMovement : MonoBehaviour
         lastDirection = dir;
     }
 
-
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnDrawGizmosSelected()
     {
-        Debug.Log("tRIGGER");
-        if (collision.CompareTag("WindVent"))
+        if (groundCheckPoint != null)
         {
-            onWindVent = true;
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheckPoint.position, groundRadius);
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("WindVent"))
-        {
-            onWindVent = false;
-        }
-    }
-
 }

@@ -23,7 +23,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
     
-    public void QuitGame()
+    public void ExitGame()
     {
         Application.Quit();
     }

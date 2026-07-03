@@ -18,7 +18,5 @@ public class PlayerMovementStat : ScriptableObject
     public float dashingSpeed;
     public float dashingTime;
 
-    [Header("WindVent")]
-    public float windForce;
-    public float updraftTime;
+    
 }

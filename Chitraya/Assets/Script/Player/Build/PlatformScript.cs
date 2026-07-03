@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlatformScript : MonoBehaviour
 {
+
+    [SerializeField] private float platformDuration = 2f;
     void Start()
     {
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, platformDuration);
     }
 
     private void OnDestroy()
