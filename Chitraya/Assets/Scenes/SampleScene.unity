@@ -255,10 +255,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: asdadadadadad
+  m_text: fsfdsfsd
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d41102e819f7c4a448c5408fbb6fa611, type: 2}
-  m_sharedMaterial: {fileID: 2652941947756935468, guid: d41102e819f7c4a448c5408fbb6fa611, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ccc00946ad77f824d889655af6cfcf98, type: 2}
+  m_sharedMaterial: {fileID: 5359180099136871398, guid: ccc00946ad77f824d889655af6cfcf98, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

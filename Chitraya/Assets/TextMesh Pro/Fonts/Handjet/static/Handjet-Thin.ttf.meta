@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d06fd901be6ae74297a73ee37ccf7a5
+guid: 9a3a2cf6155684d43bd5aceca28de55a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - VT323
+  - Handjet
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
