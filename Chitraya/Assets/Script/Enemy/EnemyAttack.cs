@@ -39,6 +39,7 @@ public class EnemyAttack : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private GameObject player;
     [SerializeField] private EnemyMovementLogic enemyMovementLogic;
+    [SerializeField] private Animator animator;
 
 
     private void Start()
@@ -108,6 +109,7 @@ public class EnemyAttack : MonoBehaviour
             //1 diem
             onAttack = true;
             onAiming = true;
+            animator.SetBool("isAttack", true);
             yield return new WaitForSeconds(attackDelay);
 
 
@@ -121,7 +123,7 @@ public class EnemyAttack : MonoBehaviour
 
             SpawnBullet();
             enemyMovementLogic.AddForced(knockbackForced, effectX, effectY, Mathf.Clamp(player.transform.position.x, -1, 1));
-
+            animator.SetBool("isAttack", false);
             //CheckHit();
             //yield return new WaitForSeconds(attackDuration);
 

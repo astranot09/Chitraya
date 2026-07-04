@@ -30,6 +30,7 @@ public class EnemyMovementLogic : MonoBehaviour
     [Header("Reference")]
     private Rigidbody2D rb;
     [SerializeField] private EnemyAttack enemyAttack;
+    [SerializeField] private EnemyScript enemyScript;
 
     private void Start()
     {
@@ -40,6 +41,11 @@ public class EnemyMovementLogic : MonoBehaviour
 
     private void Update()
     {
+        if (enemyScript.isDeath)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
         // Jika sedang knockback, biarkan Physics Unity bekerja (jangan ditimpa jadi 0)
         if (isKnockback)
         {

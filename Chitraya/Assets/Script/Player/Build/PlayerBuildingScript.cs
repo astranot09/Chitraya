@@ -12,6 +12,12 @@ public class PlayerBuildingScript : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
+    [Header("Icon Build")]
+    [SerializeField] private GameObject iconBuild;
+    [SerializeField] private float iconOffSetX = -0.2f;
+    [SerializeField] private float iconOffSetY = 0.2f;
+
     [Header("Platform")]
     [SerializeField] private GameObject platformPrefab;
     [SerializeField] private Transform platformSpawner;
@@ -40,14 +46,15 @@ public class PlayerBuildingScript : MonoBehaviour
                 if (currPlatform >= maxPlatformSpawned) return;
 
                 Instantiate(platformPrefab, location, Quaternion.identity, platformSpawner);
+                Instantiate(iconBuild, new Vector2(location.x + iconOffSetX, location.y + iconOffSetY), Quaternion.identity, platformSpawner);
                 currPlatform++;
                 break;
-            case 4:
-                if (currWindVent >= maxWindVentSpawned) return;
+            //case 4:
+            //    if (currWindVent >= maxWindVentSpawned) return;
 
-                Instantiate(windVentPrefab, location, Quaternion.identity, platformSpawner);
-                currWindVent++;
-                break;
+            //    Instantiate(windVentPrefab, location, Quaternion.identity, platformSpawner);
+            //    currWindVent++;
+            //    break;
         }
         
     }

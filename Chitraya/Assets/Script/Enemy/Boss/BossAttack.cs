@@ -40,6 +40,9 @@ public class BossAttack : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private Transform playerLocation;
 
+    [Header("Reference")]
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
         TrackingPlayer();
@@ -117,6 +120,8 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator LaserShoot()
     {
+        animator.SetBool("isAttack", true);
+
         lightWarning.color = Color.red;
 
         lightWarning.enabled = true;
@@ -139,6 +144,7 @@ public class BossAttack : MonoBehaviour
 
         onLaser = false;
         lightWarning.enabled = false;
+        animator.SetBool("isAttack", false);
         StartCoroutine(EnemyAttackLoop());
     }
 
