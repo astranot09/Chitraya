@@ -63,6 +63,8 @@ public class SoundManager : MonoBehaviour
     {
         if (bgmClip != null)
         {
+            BGMSource.Stop();
+            Debug.Log("bBOS");
             BGMSource.clip = bgmClip;
             BGMSource.Play();
             BGMSource.loop = true;

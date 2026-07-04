@@ -67,6 +67,7 @@ public class PlayerAttack : MonoBehaviour
     public void PlayerAttacking()
     {
         if (!canAttack) return;
+        if(!playerMovement.IsGrounded) return;
         canAttack = false;
         int index = PlayerInputController.instance.Index;
         SoundManager.instance.PlaySFX(SoundManager.instance.melee);

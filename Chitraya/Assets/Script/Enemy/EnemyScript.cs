@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    [SerializeField] private BossAttack bossAttack;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -39,6 +40,10 @@ public class EnemyScript : MonoBehaviour
 
     public void Death()
     {
+        if (bossAttack != null)
+        {
+            bossAttack.DestroyPembatas();
+        }
         Destroy(gameObject);
     }
 }

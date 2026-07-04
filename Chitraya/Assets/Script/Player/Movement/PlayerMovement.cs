@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private float groundRadius;
     [SerializeField] private bool isGrounded;
+    public bool IsGrounded => isGrounded;
 
 
     [Header("State Setting")]
@@ -24,9 +26,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerMovementStat stat;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] Animator animator;
+
+    [Header("Dash")]
+    [SerializeField] private float dashBuffSpeed = 1f;
+    [SerializeField] private bool isDashing;
+    [SerializeField] private float dashCooldown;
+
     public void Update()
     {
-        rb.linearVelocity = new Vector2(direction.x * stat.maxRunSpeed , rb.linearVelocityY);
+        rb.linearVelocity = new Vector2(direction.x * stat.maxRunSpeed * dashBuffSpeed, rb.linearVelocityY);
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundRadius, stat.groundLayer);
         animator.SetFloat("velocityX", Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat("velocityY", rb.linearVelocity.y);
@@ -58,5 +66,22 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(groundCheckPoint.position, groundRadius);
         }
+    }
+    public void PlayerDash()
+    {
+        Debug.Log("Dashing");
+        if (isDashing) return;
+        isDashing = true;
+        StartCoroutine(DashCountdown());
+    }
+    IEnumerator DashCountdown()
+    {
+        dashBuffSpeed = 5f;
+        animator.SetBool("isDashing", true);
+        yield return new WaitForSeconds(stat.dashingTime);
+        dashBuffSpeed = 1f;
+        animator.SetBool("isDashing", false);
+        yield return new WaitForSeconds(dashCooldown);
+        isDashing = false;
     }
 }

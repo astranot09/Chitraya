@@ -25,12 +25,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private bool alreadyRotate;
     [SerializeField] private UIManager uiManager;
+    private Animator animator;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
         uiManager.UpdateHealthUI();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -57,8 +59,13 @@ public class PlayerScript : MonoBehaviour
 
         if (health <= 0)
         {
-            uiManager.PlayerDeath();
+            animator.SetTrigger("Death");
         }
+    }
+
+    public void OpenDeathUI()
+    {
+        uiManager.PlayerDeath();
     }
 
     IEnumerator FlashAnimationDamage()

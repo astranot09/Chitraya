@@ -120,7 +120,7 @@ public class EnemyAttack : MonoBehaviour
             //3 nembak
             onPrepShoot = false;
             onAiming = false;
-
+            SoundManager.instance.PlaySFX(SoundManager.instance.laserMinion);
             SpawnBullet();
             enemyMovementLogic.AddForced(knockbackForced, effectX, effectY, Mathf.Clamp(player.transform.position.x, -1, 1));
             animator.SetBool("isAttack", false);

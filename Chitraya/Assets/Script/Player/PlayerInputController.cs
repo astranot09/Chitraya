@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 public class PlayerInputController : MonoBehaviour
 {
@@ -18,6 +20,9 @@ public class PlayerInputController : MonoBehaviour
 
     [SerializeField] private Vector2 mousePosition;
 
+
+    [Header("UI")]
+    public List<Image> allKeyAbility = new List<Image>();
 
     [Header("Reference")]
     [SerializeField] private PlayerBuildingScript buildingScript;
@@ -43,6 +48,7 @@ public class PlayerInputController : MonoBehaviour
         if (ctx.started)
         {
             index = 1;
+            UpdateAbilityUI();
         }
     }
 
@@ -53,6 +59,7 @@ public class PlayerInputController : MonoBehaviour
         if (ctx.started)
         {
             index = 2;
+            UpdateAbilityUI();
         }
     }
 
@@ -63,6 +70,7 @@ public class PlayerInputController : MonoBehaviour
         if (ctx.started)
         {
             index = 3;
+            UpdateAbilityUI();
         }
     }
 
@@ -109,6 +117,37 @@ public class PlayerInputController : MonoBehaviour
         if (ctx.started)
         {
             playerMovement.PlayerJump();
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext ctx)
+    {
+        if (ctx.canceled)
+        {
+            playerMovement.PlayerDash();
+        }
+    }
+
+    private void UpdateAbilityUI()
+    {
+        // 1. Reset semua slot ke warna putih, tapi pertahankan alpha aslinya
+        foreach (Image x in allKeyAbility)
+        {
+            if (x == null) continue;
+
+            float originalAlpha = x.color.a;
+            x.color = new Color(1f, 1f, 1f, originalAlpha);
+        }
+
+        int targetIndex = Index - 1;
+        if (targetIndex >= 0 && targetIndex < allKeyAbility.Count)
+        {
+            Image activeImage = allKeyAbility[targetIndex];
+            if (activeImage != null)
+            {
+                float originalAlpha = activeImage.color.a;
+                activeImage.color = new Color(0f, 0f, 1f, originalAlpha);
+            }
         }
     }
 

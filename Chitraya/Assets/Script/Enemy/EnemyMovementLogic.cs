@@ -24,8 +24,9 @@ public class EnemyMovementLogic : MonoBehaviour
     [SerializeField] private float durationForced;
 
     [Header("Error Helper")]
-    [SerializeField] private float currTime;
     [SerializeField] private float maxTimeError;
+    [SerializeField] private Vector2 currLoc;
+    [SerializeField] private Vector2 maxLoc;
 
     [Header("Reference")]
     private Rigidbody2D rb;
@@ -37,6 +38,7 @@ public class EnemyMovementLogic : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         float randomX = (Random.value > 0.5f) ? 1f : -1f;
         dir = new Vector2(randomX, dir.y);
+        StartCoroutine(ErrorHelper());
     }
 
     private void Update()
@@ -79,24 +81,7 @@ public class EnemyMovementLogic : MonoBehaviour
             }
         }
 
-        //Buat Jaga jaga
-        if (Mathf.Abs(rb.linearVelocity.x) < 0.1f && !enemyAttack.OnAttack)
-        {
-            if (currTime <= maxTimeError)
-            {
-                currTime += Time.deltaTime;
-            }
-            else
-            {
-                dir.x *= -1;
-                currTime = 0;
-            }
 
-        }
-        else
-        {
-            currTime = 0;
-        }
     }
 
     public void AddForced(float forced, float effectDirX, float effectDirY, float dirX)
@@ -131,4 +116,31 @@ public class EnemyMovementLogic : MonoBehaviour
         Vector3 cliffCheckOrigin = new Vector3(transform.position.x + (dir.x * cliffCheckForwardOffset), transform.position.y, transform.position.z);
         Gizmos.DrawLine(cliffCheckOrigin, cliffCheckOrigin + Vector3.down * checkGroundDistance);
     }
+
+    IEnumerator ErrorHelper()
+    {
+        while (true)
+        {
+            currLoc = transform.position;
+
+            yield return new WaitForSeconds(maxTimeError);
+
+            if (enemyScript.isDeath || isKnockback) continue;
+
+            maxLoc = transform.position;
+
+            float distanceMoved = Vector2.Distance(currLoc, maxLoc);
+
+            if (!enemyAttack.OnAttack && distanceMoved < 0.05f)
+            {
+                dir.x *= -1; // Putar balik!
+
+                // PENTING: Paksa reset posisi maxLoc setelah memutar arah 
+                // agar siklus berikutnya tidak membaca jarak yang salah
+                maxLoc = transform.position;
+                Debug.Log("AI Macet, memutar arah!");
+            }
+        }
+    }
+
 }

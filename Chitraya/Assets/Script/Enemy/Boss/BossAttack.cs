@@ -43,6 +43,10 @@ public class BossAttack : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Animator animator;
 
+
+    [Header("Penutup")]
+    [SerializeField] private GameObject penutupBoss;
+
     private void Start()
     {
         TrackingPlayer();
@@ -52,8 +56,10 @@ public class BossAttack : MonoBehaviour
     {
         if (bossStart == null && collision.CompareTag("Player"))
         {
-            bossStart = StartCoroutine(EnemyAttackLoop());
+            penutupBoss.SetActive(true);
             SoundManager.instance.PlayBGM(SoundManager.instance.bossClip);
+            bossStart = StartCoroutine(EnemyAttackLoop());
+
         }
     }
 
@@ -123,9 +129,10 @@ public class BossAttack : MonoBehaviour
         animator.SetBool("isAttack", true);
 
         lightWarning.color = Color.red;
-
+        SoundManager.instance.PlaySFX(SoundManager.instance.charge);
         lightWarning.enabled = true;
         onAiming = true;
+        
         yield return new WaitForSeconds(laserCountdown);
 
         onAiming = false;
@@ -207,4 +214,10 @@ public class BossAttack : MonoBehaviour
     {
         if (PlayerScript.instance != null) PlayerScript.instance.TakeDamage(damage);
     }
+
+    public void DestroyPembatas()
+    {
+        Destroy(penutupBoss);
+    }
+
 }

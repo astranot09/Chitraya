@@ -12,16 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d435d79bc7fb3934585b3c142acfb0fd, type: 3}
   m_Name: PlayerMovement
   m_EditorClassIdentifier: 
-  maxRunSpeed: 10
+  maxRunSpeed: 6
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  jumpForced: 10
+  jumpForced: 7.5
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
   hangingTime: 0
-  dashingSpeed: 0
-  dashingTime: 0
-  windForce: 4
-  updraftTime: 0
+  dashingSpeed: 3
+  dashingTime: 0.2
