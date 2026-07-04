@@ -14,6 +14,7 @@ public class EnemyAttack : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private bool inRange;
+    public bool InRange => inRange;
 
     [Header("Attack")]
     [SerializeField] private int damage = 1;
@@ -23,6 +24,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float attackDuration;
     [SerializeField] private float attackCooldown;
     [SerializeField] private float currCooldown;
+    private bool alreadyRotate;
 
     [Header("Knockback")]
     [SerializeField] private float knockbackForced = 2;
@@ -32,11 +34,17 @@ public class EnemyAttack : MonoBehaviour
 
     [Header("Bullet")]
     [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform bulletSpawner;
 
     [Header("Reference")]
+    [SerializeField] private GameObject player;
     [SerializeField] private EnemyMovementLogic enemyMovementLogic;
-    [SerializeField] private TrajectoryLine trajectoryLine;
 
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -69,6 +77,13 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
+
+        if (InRange)
+        {
+            EnemyTracking();
+        }
+
+
         if(currCooldown > 0)
         {
             currCooldown -= Time.deltaTime;
@@ -89,31 +104,64 @@ public class EnemyAttack : MonoBehaviour
                 yield return null; // Tunggu 1 frame, lalu cek kondisi while lagi
                 continue;          // Skip kode di bawah, balik lagi ke atas loop
             }
+
+            //1 diem
             onAttack = true;
             onAiming = true;
             yield return new WaitForSeconds(attackDelay);
 
+
+            //2 delay dikit
             onPrepShoot = true;
             yield return new WaitForSeconds(warningDelay);
 
+            //3 nembak
             onPrepShoot = false;
             onAiming = false;
+
+            SpawnBullet();
             enemyMovementLogic.AddForced(knockbackForced, effectX, effectY);
-            CheckHit();
+
+            //CheckHit();
             //yield return new WaitForSeconds(attackDuration);
+
             currCooldown = attackCooldown;
             onAttack = false;
         }
         attackCoroutine = null;
     }
 
-    public void CheckHit()
+    //public void CheckHit()
+    //{
+    //    if (trajectoryLine.PlayerHit())
+    //    {
+    //        Debug.Log("Kena Damage");
+    //        PlayerScript.instance.TakeDamage(damage);
+    //    }
+    //}
+
+    public void SpawnBullet()
     {
-        if (trajectoryLine.PlayerHit())
-        {
-            Debug.Log("Kena Damage");
-            PlayerScript.instance.TakeDamage(damage);
-        }
+        Debug.Log("tembak");
+
+        if(bullet != null)
+            Instantiate(bullet, bulletSpawner.position, Quaternion.identity, bulletSpawner);
     }
 
+    public void EnemyTracking()
+    {
+        if (player.transform.position.x > transform.position.x && alreadyRotate)
+        {
+            // Set rotasi absolut menghadap kanan (0 derajat)
+            transform.parent.rotation = Quaternion.Euler(0, 0, 0);
+            alreadyRotate = false;
+        }
+        // Jika player di sebelah kiri dan musuh sedang menghadap kanan (alreadyRotate = false)
+        else if (player.transform.position.x < transform.position.x && !alreadyRotate)
+        {
+            // Set rotasi absolut menghadap kiri (180 derajat)
+            transform.parent.rotation = Quaternion.Euler(0, 180, 0);
+            alreadyRotate = true;
+        }
+    }
 }
