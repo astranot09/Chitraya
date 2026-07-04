@@ -50,6 +50,7 @@ public class BossAttack : MonoBehaviour
         if (bossStart == null && collision.CompareTag("Player"))
         {
             bossStart = StartCoroutine(EnemyAttackLoop());
+            SoundManager.instance.PlayBGM(SoundManager.instance.bossClip);
         }
     }
 
@@ -125,7 +126,7 @@ public class BossAttack : MonoBehaviour
         onAiming = false;
         lightWarning.color = Color.yellow;
         yield return new WaitForSeconds(laserDelayBeforeAttack);
-
+        SoundManager.instance.PlaySFX(SoundManager.instance.laserBoss);
         lightWarning.color = Color.red;
         onLaser = true;
 

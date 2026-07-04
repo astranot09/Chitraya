@@ -11,10 +11,12 @@ public class EnemyScript : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        currHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("aduh");
         currHealth -= damage;
         StartCoroutine(FlashAnimationDamage());
 

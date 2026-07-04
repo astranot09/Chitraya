@@ -32,18 +32,17 @@ public class PlayerBuildingScript : MonoBehaviour
 
     [Header("Change Build")]
     [SerializeField] private bool onActivated;
-    [SerializeField] private int indexBuild; //1 untuk platform, 2 untuk WindVent
     public void PlayerBuilding(Vector2 location)
     {
-        switch (indexBuild)
+        switch (PlayerInputController.instance.Index)
         {
-            case 1:
+            case 3:
                 if (currPlatform >= maxPlatformSpawned) return;
 
                 Instantiate(platformPrefab, location, Quaternion.identity, platformSpawner);
                 currPlatform++;
                 break;
-            case 2:
+            case 4:
                 if (currWindVent >= maxWindVentSpawned) return;
 
                 Instantiate(windVentPrefab, location, Quaternion.identity, platformSpawner);

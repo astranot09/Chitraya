@@ -7,14 +7,14 @@ public class SmasherScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (canDamage)
+        if (canDamage && collision.CompareTag("Player"))
         {
             GiveDamage();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (canDamage)
+        if (canDamage && collision.CompareTag("Player"))
         {
             GiveDamage();
         }
@@ -23,6 +23,7 @@ public class SmasherScript : MonoBehaviour
     public void SetCanDamage()
     {
         canDamage = true;
+        SoundManager.instance.PlaySFX(SoundManager.instance.stomp);
     }
     public void SetCantDamage()
     {

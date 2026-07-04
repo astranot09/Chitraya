@@ -4,7 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Direction")]
     [SerializeField] private Vector2 direction;
+    public Vector2 Direction => direction;
     [SerializeField] private Vector2 lastDirection;
+    public Vector2 LastDirection => lastDirection;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheckPoint;
@@ -21,11 +23,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private PlayerMovementStat stat;
     [SerializeField] private Rigidbody2D rb;
-
+    [SerializeField] Animator animator;
     public void Update()
     {
         rb.linearVelocity = new Vector2(direction.x * stat.maxRunSpeed , rb.linearVelocityY);
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundRadius, stat.groundLayer);
+        animator.SetFloat("velocityX", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("velocityY", rb.linearVelocity.y);
     }
 
 

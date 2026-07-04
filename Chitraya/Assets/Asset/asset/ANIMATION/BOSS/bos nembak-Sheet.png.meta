@@ -131,9 +131,9 @@ TextureImporter:
       name: bos nembak-Sheet_0
       rect:
         serializedVersion: 2
-        x: 227
+        x: 0
         y: 0
-        width: 254
+        width: 576
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -153,9 +153,9 @@ TextureImporter:
       name: bos nembak-Sheet_1
       rect:
         serializedVersion: 2
-        x: 803
+        x: 576
         y: 0
-        width: 254
+        width: 576
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -175,9 +175,9 @@ TextureImporter:
       name: bos nembak-Sheet_2
       rect:
         serializedVersion: 2
-        x: 1379
+        x: 1152
         y: 0
-        width: 254
+        width: 576
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -197,9 +197,9 @@ TextureImporter:
       name: bos nembak-Sheet_3
       rect:
         serializedVersion: 2
-        x: 1955
+        x: 1728
         y: 0
-        width: 254
+        width: 576
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -219,9 +219,9 @@ TextureImporter:
       name: bos nembak-Sheet_4
       rect:
         serializedVersion: 2
-        x: 2531
+        x: 2304
         y: 0
-        width: 254
+        width: 576
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -241,9 +241,9 @@ TextureImporter:
       name: bos nembak-Sheet_5
       rect:
         serializedVersion: 2
-        x: 3107
+        x: 2880
         y: 0
-        width: 254
+        width: 576
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -263,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 05b09fdd0b5c90c47b33a6c05adb6171
     internalID: 0
     vertices: []
     indices: 

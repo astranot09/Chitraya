@@ -3,16 +3,37 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
+
+    public static SoundManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     [Header("Audio Source")]
     [SerializeField] private AudioSource BGMSource;
     [SerializeField] private AudioSource SFXSource;
 
     [Header("BGM == Audio Clip")]
-    [SerializeField] private AudioClip bgmClip;
+    public AudioClip bgmClip;
+    public AudioClip bossClip;
 
-    [Header("SFX == Audio Clip")]
-    [SerializeField] private AudioClip jump;
+    [Header("SFX Player== Audio Clip")]
+    public AudioClip jump;
+    public AudioClip landing;
+    public AudioClip melee;
+    public AudioClip walk;
 
+    [Header("SFX Enemy== Audio Clip")]
+    public AudioClip hit;
+    public AudioClip laserMinion;
+    public AudioClip stomp;
+    public AudioClip charge;
+    public AudioClip laserBoss;
 
     [Header("AudioMixer")]
     [SerializeField] private AudioMixer audioMixer;

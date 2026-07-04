@@ -15,23 +15,49 @@ public class PlayerScript : MonoBehaviour
             Destroy(gameObject);
     }
 
+    [SerializeField] private int maxHealth = 3;
+    public int MaxHealth => maxHealth;
     [SerializeField] private int health;
     public int Health => health;
     private SpriteRenderer spriteRenderer;
 
+    [Header("Reference")]
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private bool alreadyRotate;
+    [SerializeField] private UIManager uiManager;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        health = maxHealth;
+        uiManager.UpdateHealthUI();
     }
-
+    private void Update()
+    {
+        if (playerMovement != null)
+        {
+            if(playerMovement.LastDirection.x < 0 && !alreadyRotate)
+            {
+                transform.Rotate(0, 180, 0);
+                alreadyRotate = true;
+            }
+            else if(playerMovement.LastDirection.x > 0 && alreadyRotate)
+            {
+                transform.Rotate(0, -180, 0);
+                alreadyRotate = false;
+            
+            }
+        }
+    }
     public void TakeDamage(int damage)
     {
         health -= damage;
+        uiManager.UpdateHealthUI();
         StartCoroutine(FlashAnimationDamage());
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            uiManager.PlayerDeath();
         }
     }
 
