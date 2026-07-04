@@ -1,0 +1,4 @@
+Third Party Notices
+
+This package does not include or depend on any third-party software,
+libraries, or assets. All code is original work by SplashArt Toolbox.

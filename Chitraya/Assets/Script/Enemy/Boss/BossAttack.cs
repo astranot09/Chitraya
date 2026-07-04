@@ -10,21 +10,24 @@ public class BossAttack : MonoBehaviour
     [Header("Attack Cooldown")]
     [SerializeField] private float attackCooldown = 3f;
 
+    [SerializeField] private int damage = 1;
+    [SerializeField] private bool onAiming;
 
-    [Header("Attack Type Laser")]
-    [SerializeField] private float fovAngle = 90f;
+    [Header("Attack Type Laser (Sprite Parallel)")]
+    [Tooltip("Lebar total jangkauan laser kiri-ke-kanan dalam satuan unit Unity.")]
+    [SerializeField] private float laserWidth = 3f;
     [SerializeField] private Transform fovPoint;
     [SerializeField] private float range = 8f;
     [SerializeField] private Light2D lightWarning;
-    [SerializeField] private Sprite laserSprite;
-    [SerializeField] private bool laserTypeAttack;
 
     [Header("Attack Setting Type Laser")]
     [SerializeField] private float laserCountdown = 1f;
+    [SerializeField] private float laserDelayBeforeAttack = 1f;
     [SerializeField] private float laserDuration = 1f;
+    [SerializeField] private bool onLaser;
 
     [Header("Multiple Raycast Settings")]
-    [Tooltip("Jumlah total garis raycast yang ditembakkan. Makin banyak makin akurat tapi beban CPU naik.")]
+    [Tooltip("Jumlah garis raycast sejajar. Makin rapat makin akurat.")]
     [SerializeField] private int rayCount = 10;
 
     [Header("Targeting")]
@@ -38,127 +41,50 @@ public class BossAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(bossStart == null)
+        if (bossStart == null && collision.CompareTag("Player"))
         {
             bossStart = StartCoroutine(EnemyAttackLoop());
         }
     }
 
-
     IEnumerator EnemyAttackLoop()
     {
-        while (true)
+        yield return new WaitForSeconds(attackCooldown);
+        switch (RandomizeAttackType())
         {
-            yield return new WaitForSeconds(attackCooldown);
-            switch (RandomizeAttackType())
-            {
-                case 0:
-                    SmashingAttackLogic();
-                    break;
-                case 1:
-                    LaserAttackLogic();
-                    break;
-            }
+            case 0:
+                SmashingAttackLogic();
+                break;
+            case 1:
+                LaserAttackLogic();
+                break;
         }
     }
-
 
     private int RandomizeAttackType()
     {
         return Random.Range(0, 2);
     }
 
-
-
-
-
-
     private void Update()
     {
         if (playerLocation == null) return;
         RotateTowardsPlayer();
 
-        // ============================== LASER TYPE =========================================
-
-        if (laserTypeAttack)
-        {
-            Vector2 forwardDirection = fovPoint.up;
-
-            // Hitung sudut awal dan sudut akhir dari jangkauan kipas FOV
-            float halfFOV = fovAngle / 2f;
-            float baseAngle = Mathf.Atan2(forwardDirection.y, forwardDirection.x) * Mathf.Rad2Deg;
-
-            float startAngle = baseAngle - halfFOV;
-            float endAngle = baseAngle + halfFOV;
-
-            bool canSeePlayer = false;
-
-            // Loop untuk menembakkan raycast satu per satu membentuk kipas
-            for (int i = 0; i <= rayCount; i++)
-            {
-                // Interpolasi sudut dari startAngle ke endAngle
-                float t = (float)i / rayCount;
-                float currentAngle = Mathf.Lerp(startAngle, endAngle, t);
-
-                // Ubah sudut derajat menjadi Vector2 arah
-                Vector2 rayDirection = AngleToVector(currentAngle);
-
-                // Tembakkan Raycast
-                RaycastHit2D hit = Physics2D.Raycast(fovPoint.position, rayDirection, range, targetMask);
-
-                if (hit.collider != null)
-                {
-                    if (hit.collider.CompareTag("Player"))
-                    {
-                        // Salah satu raycast berhasil mengenai player tanpa terhalang tembok!
-                        canSeePlayer = true;
-                        Debug.DrawLine(fovPoint.position, hit.point, Color.green);
-                    }
-                    else
-                    {
-                        // Raycast menabrak tembok/ground sebelum mencapai jarak maksimal
-                        Debug.DrawLine(fovPoint.position, hit.point, Color.yellow);
-                    }
-                }
-                else
-                {
-                    // Raycast tidak menabrak apa-apa sampai batas range
-                    Debug.DrawRay(fovPoint.position, rayDirection * range, Color.red);
-                }
-            }
-
-            // Eksekusi keputusan akhir setelah semua ray selesai memeriksa area
-            if (canSeePlayer)
-            {
-                Debug.Log("Liat Player!");
-                // Jalankan fungsi nembak/serang kamu di sini
-            }
-            else
-            {
-                Debug.Log("Ga liat - Player sembunyi atau di luar area.");
-            }
-        }
-
+        if (onLaser)
+            LaserCheckDamage();
     }
 
     private void RotateTowardsPlayer()
     {
-        // Hitung arah vector dari fovPoint menuju posisi Player
-        Vector2 direction = playerLocation.position - fovPoint.position;
+        if (!onAiming) return;
 
-        // Hitung sudut derajat menggunakan Atan2
-        // Dikurang 90 derajat karena acuan utama kode kamu menggunakan sumbu Y (fovPoint.up)
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        Vector2 direction = fovPoint.position - playerLocation.position;
 
-        // Ubah rotasi fovPoint secara absolut pada sumbu Z
+        // Memperbaiki typo comment '//' dan mengaktifkan -90f agar moncong atas (Up) yang membidik
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
         fovPoint.rotation = Quaternion.Euler(0, 0, angle);
-    }
-
-
-    // Fungsi pembantu untuk mengubah sudut derajat menjadi Vector2 Arah
-    private Vector2 AngleToVector(float angleInDegrees)
-    {
-        return new Vector2(Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), Mathf.Sin(angleInDegrees * Mathf.Deg2Rad));
     }
 
     public void SmashingAttackLogic()
@@ -172,25 +98,88 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator LaserShoot()
     {
-        //Warning Nyala
+        lightWarning.color = Color.red;
+
         lightWarning.enabled = true;
+        onAiming = true;
         yield return new WaitForSeconds(laserCountdown);
 
+        onAiming = false;
+        lightWarning.color = Color.yellow;
+        yield return new WaitForSeconds(laserDelayBeforeAttack);
 
-        //Tembak Laser
-        lightWarning.lightCookieSprite = laserSprite;
+        lightWarning.color = Color.red;
+        onLaser = true;
+
+        float timer = 0f;
+        while (timer < laserDuration && onLaser)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        onLaser = false;
         lightWarning.enabled = false;
+        StartCoroutine(EnemyAttackLoop());
     }
 
-
-    private void LaserSetUp()
+    private void LaserCheckDamage()
     {
-        
+        Vector2 forwardDirection = -fovPoint.right; // Menembak ke arah kiri objek
+        Vector2 rightDirection = fovPoint.up;
+
+        bool canSeePlayer = false;
+
+        // Jarak spasi antar garis raycast sejajar
+        float step = laserWidth / rayCount;
+
+        // Loop untuk menembakkan raycast sejajar (Paralel) dari kiri ke kanan balok laser
+        for (int i = 0; i <= rayCount; i++)
+        {
+            // Menghitung titik offset dari kiri (-laserWidth/2) ke kanan (+laserWidth/2)
+            float offset = (-laserWidth / 2f) + (i * step);
+
+            // Titik pangkal tembak digeser ke samping sesuai ketebalan laser kotak kamu
+            Vector2 rayOrigin = (Vector2)fovPoint.position + (rightDirection * offset);
+
+            // Tembakkan ke depan lurus secara paralel!
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, forwardDirection, range, targetMask);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    canSeePlayer = true;
+                    Debug.DrawLine(rayOrigin, hit.point, Color.green);
+                    break;
+                }
+                else
+                {
+                    Debug.DrawLine(rayOrigin, hit.point, Color.yellow);
+                }
+            }
+            else
+            {
+                Debug.DrawRay(rayOrigin, forwardDirection * range, Color.red);
+            }
+        }
+
+        if (canSeePlayer)
+        {
+            Debug.Log("Player Terkena Laser Kotak! Matikan Laser.");
+            //GiveDamageToPlayer(damage);
+            //onLaser = false;
+        }
     }
 
     private void TrackingPlayer()
     {
-        playerLocation = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject target = GameObject.FindGameObjectWithTag("Player");
+        if (target != null) playerLocation = target.transform;
     }
 
+    private void GiveDamageToPlayer(int damage)
+    {
+        if (PlayerScript.instance != null) PlayerScript.instance.TakeDamage(damage);
+    }
 }
