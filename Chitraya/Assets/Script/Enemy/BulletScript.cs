@@ -67,11 +67,11 @@ public class BulletScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerScript.instance.TakeDamage(damage);
-            Destroy(gameObject, destroyTime);
+            Destroy(gameObject);
         }
         else if(collision.CompareTag("Ground") || collision.CompareTag("Wall"))
         {
-            Destroy(gameObject,destroyTime);
+            Destroy(gameObject);
         }
     }
 

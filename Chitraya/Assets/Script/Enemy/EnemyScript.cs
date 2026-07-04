@@ -1,22 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
-    public static PlayerScript instance;
+    public int maxHealth;
+    public int currHealth;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-            Destroy(gameObject);
-    }
-
-    [SerializeField] private int health;
-    public int Health => health;
     private SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -26,10 +15,10 @@ public class PlayerScript : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        currHealth -= damage;
         StartCoroutine(FlashAnimationDamage());
 
-        if (health <= 0)
+        if(currHealth <= 0)
         {
             Destroy(gameObject);
         }

@@ -76,14 +76,12 @@ public class BossAttack : MonoBehaviour
     private void Update()
     {
         if (playerLocation == null) return;
-
-
+        RotateTowardsPlayer();
 
         // ============================== LASER TYPE =========================================
 
         if (laserTypeAttack)
         {
-            // Berdasarkan gambar sebelumnya, arah hadap utama adalah KIRI (-fovPoint.right)
             Vector2 forwardDirection = fovPoint.up;
 
             // Hitung sudut awal dan sudut akhir dari jangkauan kipas FOV
@@ -142,6 +140,20 @@ public class BossAttack : MonoBehaviour
         }
 
     }
+
+    private void RotateTowardsPlayer()
+    {
+        // Hitung arah vector dari fovPoint menuju posisi Player
+        Vector2 direction = playerLocation.position - fovPoint.position;
+
+        // Hitung sudut derajat menggunakan Atan2
+        // Dikurang 90 derajat karena acuan utama kode kamu menggunakan sumbu Y (fovPoint.up)
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+
+        // Ubah rotasi fovPoint secara absolut pada sumbu Z
+        fovPoint.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
 
     // Fungsi pembantu untuk mengubah sudut derajat menjadi Vector2 Arah
     private Vector2 AngleToVector(float angleInDegrees)
