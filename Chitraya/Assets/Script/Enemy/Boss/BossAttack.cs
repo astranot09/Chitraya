@@ -13,6 +13,12 @@ public class BossAttack : MonoBehaviour
     [SerializeField] private int damage = 1;
     [SerializeField] private bool onAiming;
 
+    [Header("Attack Type Smashing")]
+    [SerializeField] private GameObject smashingPrefab;
+    [SerializeField] private int maxSmashing = 3;
+    [SerializeField] private float delayBeforeNextSmashing = 1f;
+    [SerializeField] private float yOffSet = 1;
+
     [Header("Attack Type Laser (Sprite Parallel)")]
     [Tooltip("Lebar total jangkauan laser kiri-ke-kanan dalam satuan unit Unity.")]
     [SerializeField] private float laserWidth = 3f;
@@ -89,12 +95,24 @@ public class BossAttack : MonoBehaviour
 
     public void SmashingAttackLogic()
     {
-        StartCoroutine(LaserShoot());
+        StartCoroutine(SmashingTime());
     }
     public void LaserAttackLogic()
     {
         StartCoroutine(LaserShoot());
     }
+
+
+    IEnumerator SmashingTime()
+    {
+        for (int i = 0; i < maxSmashing; i++)
+        {
+            Instantiate(smashingPrefab, new Vector2(playerLocation.position.x, playerLocation.position.y + yOffSet), Quaternion.identity);
+            yield return new WaitForSeconds(delayBeforeNextSmashing);
+        }
+        StartCoroutine(EnemyAttackLoop());
+    }
+
 
     IEnumerator LaserShoot()
     {
@@ -167,8 +185,8 @@ public class BossAttack : MonoBehaviour
         if (canSeePlayer)
         {
             Debug.Log("Player Terkena Laser Kotak! Matikan Laser.");
-            //GiveDamageToPlayer(damage);
-            //onLaser = false;
+            GiveDamageToPlayer(damage);
+            onLaser = false;
         }
     }
 

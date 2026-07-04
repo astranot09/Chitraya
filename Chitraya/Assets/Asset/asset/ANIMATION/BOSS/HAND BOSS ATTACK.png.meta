@@ -70,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -149,10 +149,10 @@ TextureImporter:
       name: HAND BOSS ATTACK_0
       rect:
         serializedVersion: 2
-        x: 185
-        y: 437
-        width: 8
-        height: 8
+        x: 0
+        y: 0
+        width: 384
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: HAND BOSS ATTACK_1
       rect:
         serializedVersion: 2
-        x: 569
-        y: 437
-        width: 8
-        height: 8
+        x: 384
+        y: 0
+        width: 384
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,10 @@ TextureImporter:
       name: HAND BOSS ATTACK_2
       rect:
         serializedVersion: 2
-        x: 953
-        y: 437
-        width: 8
-        height: 8
+        x: 768
+        y: 0
+        width: 384
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: HAND BOSS ATTACK_3
       rect:
         serializedVersion: 2
-        x: 1241
-        y: 413
-        width: 200
-        height: 163
+        x: 1152
+        y: 0
+        width: 384
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: HAND BOSS ATTACK_4
       rect:
         serializedVersion: 2
-        x: 1625
-        y: 323
-        width: 200
-        height: 253
+        x: 1536
+        y: 0
+        width: 384
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,9 +259,9 @@ TextureImporter:
       name: HAND BOSS ATTACK_5
       rect:
         serializedVersion: 2
-        x: 1949
+        x: 1920
         y: 0
-        width: 314
+        width: 384
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -281,9 +281,9 @@ TextureImporter:
       name: HAND BOSS ATTACK_6
       rect:
         serializedVersion: 2
-        x: 2339
+        x: 2304
         y: 0
-        width: 308
+        width: 384
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -299,121 +299,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: HAND BOSS ATTACK_7
-      rect:
-        serializedVersion: 2
-        x: 125
-        y: 0
-        width: 128
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0fc19a6e317acdcc0800000000000000
-      internalID: -3684886691179848464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HAND BOSS ATTACK_8
-      rect:
-        serializedVersion: 2
-        x: 497
-        y: 0
-        width: 152
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9bae5ac51494f1980800000000000000
-      internalID: -8566047421159314759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HAND BOSS ATTACK_9
-      rect:
-        serializedVersion: 2
-        x: 863
-        y: 0
-        width: 188
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d61904a35572dc560800000000000000
-      internalID: 7335562615059419501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HAND BOSS ATTACK_10
-      rect:
-        serializedVersion: 2
-        x: 1235
-        y: 0
-        width: 212
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b631cb9080526bf50800000000000000
-      internalID: 6896740595817780075
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HAND BOSS ATTACK_11
-      rect:
-        serializedVersion: 2
-        x: 1589
-        y: 0
-        width: 272
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fc1af1e3c79180f90800000000000000
-      internalID: -6987306800456425009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a4a96c33c99664e4197fbdf1d7b8a0da
     internalID: 0
     vertices: []
     indices: 
@@ -425,16 +315,11 @@ TextureImporter:
     nameFileIdTable:
       HAND BOSS ATTACK_0: 5512428096803502107
       HAND BOSS ATTACK_1: -4544396151538412466
-      HAND BOSS ATTACK_10: 6896740595817780075
-      HAND BOSS ATTACK_11: -6987306800456425009
       HAND BOSS ATTACK_2: 7783020255446739164
       HAND BOSS ATTACK_3: -4880492862617237819
       HAND BOSS ATTACK_4: -6830591954409754252
       HAND BOSS ATTACK_5: -2445842566328259762
       HAND BOSS ATTACK_6: -2581937456751441659
-      HAND BOSS ATTACK_7: -3684886691179848464
-      HAND BOSS ATTACK_8: -8566047421159314759
-      HAND BOSS ATTACK_9: 7335562615059419501
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
