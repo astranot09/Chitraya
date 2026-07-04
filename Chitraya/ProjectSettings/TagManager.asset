@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Ground
   - WindVent
+  - Wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
@@ -42,6 +43,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2283815833
+    locked: 0
+  - name: Player
+    uniqueID: 371333007
+    locked: 0
+  - name: Boss
+    uniqueID: 136467071
     locked: 0
   m_RenderingLayers:
   - Default

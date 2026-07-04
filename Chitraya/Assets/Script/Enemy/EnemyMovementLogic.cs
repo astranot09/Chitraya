@@ -93,11 +93,10 @@ public class EnemyMovementLogic : MonoBehaviour
         }
     }
 
-    public void AddForced(float forced, float effectDirX, float effectDirY)
+    public void AddForced(float forced, float effectDirX, float effectDirY, float dirX)
     {
         isKnockback = true; // Kunci agar Update tidak memaksa velocity menjadi 0
-
-        Vector2 knockbackDirection = new Vector2(dir.x * effectDirX, effectDirY);
+        Vector2 knockbackDirection = new Vector2(dirX * effectDirX, effectDirY);
         knockbackDirection.Normalize();
 
         // Reset velocity sejenak sebelum dorong agar kekuatannya konsisten

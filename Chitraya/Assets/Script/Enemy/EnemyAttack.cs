@@ -120,7 +120,7 @@ public class EnemyAttack : MonoBehaviour
             onAiming = false;
 
             SpawnBullet();
-            enemyMovementLogic.AddForced(knockbackForced, effectX, effectY);
+            enemyMovementLogic.AddForced(knockbackForced, effectX, effectY, Mathf.Clamp(player.transform.position.x, -1, 1));
 
             //CheckHit();
             //yield return new WaitForSeconds(attackDuration);
@@ -145,19 +145,19 @@ public class EnemyAttack : MonoBehaviour
         Debug.Log("tembak");
 
         if(bullet != null)
-            Instantiate(bullet, bulletSpawner.position, Quaternion.identity, bulletSpawner);
+            Instantiate(bullet, bulletSpawner.position, Quaternion.identity);
     }
 
     public void EnemyTracking()
     {
-        if (player.transform.position.x > transform.position.x && alreadyRotate)
+        if (player.transform.position.x < transform.position.x && alreadyRotate)
         {
             // Set rotasi absolut menghadap kanan (0 derajat)
             transform.parent.rotation = Quaternion.Euler(0, 0, 0);
             alreadyRotate = false;
         }
         // Jika player di sebelah kiri dan musuh sedang menghadap kanan (alreadyRotate = false)
-        else if (player.transform.position.x < transform.position.x && !alreadyRotate)
+        else if (player.transform.position.x > transform.position.x && !alreadyRotate)
         {
             // Set rotasi absolut menghadap kiri (180 derajat)
             transform.parent.rotation = Quaternion.Euler(0, 180, 0);
