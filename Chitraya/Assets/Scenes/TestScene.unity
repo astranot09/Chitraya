@@ -41911,7 +41911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingScript: {fileID: 244210369}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 1911037445}
   playerAttack: {fileID: 1391180001}
 --- !u!114 &1062058583
 MonoBehaviour:
@@ -44228,7 +44228,7 @@ MonoBehaviour:
   canAttack: 0
   bulletDamage: 1
   weaponCollider: {fileID: 1391180002}
-  meleeDamage: 1
+  meleeDamage: 2
   playerMovement: {fileID: 1911037445}
   animator: {fileID: 1062058580}
 --- !u!70 &1391180002
@@ -48667,7 +48667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a7f8695e13154499f9082e68222ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 30
   currHealth: 0
   bossAttack: {fileID: 1211660123}
 --- !u!61 &1950594478
