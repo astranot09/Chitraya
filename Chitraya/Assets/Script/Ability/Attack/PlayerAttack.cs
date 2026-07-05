@@ -70,14 +70,16 @@ public class PlayerAttack : MonoBehaviour
         if(!playerMovement.IsGrounded) return;
         canAttack = false;
         int index = PlayerInputController.instance.Index;
-        SoundManager.instance.PlaySFX(SoundManager.instance.melee);
+        
         if (index == 1)
         {
             animator.SetTrigger("MeleeAttack");
+            SoundManager.instance.PlaySFX(SoundManager.instance.melee);
         }
         if (index == 2)
         {
             animator.SetTrigger("RangedAttack");
+            SoundManager.instance.PlaySFX(SoundManager.instance.range);
         }
     }
 

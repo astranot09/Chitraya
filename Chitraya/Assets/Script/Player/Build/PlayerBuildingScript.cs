@@ -44,7 +44,7 @@ public class PlayerBuildingScript : MonoBehaviour
         {
             case 3:
                 if (currPlatform >= maxPlatformSpawned) return;
-
+                SoundManager.instance.PlaySFX(SoundManager.instance.playerBuild);
                 Instantiate(platformPrefab, location, Quaternion.identity, platformSpawner);
                 Instantiate(iconBuild, new Vector2(location.x + iconOffSetX, location.y + iconOffSetY), Quaternion.identity, platformSpawner);
                 currPlatform++;

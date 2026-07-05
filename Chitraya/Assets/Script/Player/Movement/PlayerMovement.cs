@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isGrounded;
     public bool IsGrounded => isGrounded;
 
+    [Header("Walk Sound Timer")]
+    [SerializeField] private float walkStepInterval = 0.35f; // Jeda antar langkah (detik)
+    private float walkTimer;
+
 
     [Header("State Setting")]
     [SerializeField] private bool onJumping;
@@ -38,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundRadius, stat.groundLayer);
         animator.SetFloat("velocityX", Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat("velocityY", rb.linearVelocity.y);
+        HandleWalkSound();
     }
 
 
@@ -47,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             rb.linearVelocityY = stat.jumpForced;
+            SoundManager.instance.PlaySFX(SoundManager.instance.jump);
         }
     }
 
@@ -84,4 +90,26 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
     }
+
+    private void HandleWalkSound()
+    {
+        // Cek jika player sedang bergerak horizontal di tanah dan tidak sedang diam
+        if (isGrounded && Mathf.Abs(rb.linearVelocity.x) > 0.1f)
+        {
+            walkTimer += Time.deltaTime;
+            if (walkTimer >= walkStepInterval)
+            {
+                if (SoundManager.instance != null)
+                {
+                    SoundManager.instance.PlaySFX(SoundManager.instance.walk);
+                }
+                walkTimer = 0f; // Reset timer
+            }
+        }
+        else
+        {
+            walkTimer = walkStepInterval; // Siap langsung bunyi saat mulai jalan lagi
+        }
+    }
+
 }

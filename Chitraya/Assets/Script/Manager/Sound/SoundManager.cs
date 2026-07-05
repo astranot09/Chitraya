@@ -26,7 +26,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip jump;
     public AudioClip landing;
     public AudioClip melee;
+    public AudioClip range;
     public AudioClip walk;
+    public AudioClip playerHurt;
+    public AudioClip playerBuild;
 
     [Header("SFX Enemy== Audio Clip")]
     public AudioClip hit;

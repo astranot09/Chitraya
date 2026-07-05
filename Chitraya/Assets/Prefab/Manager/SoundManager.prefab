@@ -53,7 +53,10 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: 0d4304e6a3225754396b14e7624c745e, type: 3}
   landing: {fileID: 8300000, guid: 08a55443abb59a244ae4efce374111fc, type: 3}
   melee: {fileID: 8300000, guid: 67c962761ead1af4394595a3e3e5b7c1, type: 3}
+  range: {fileID: 8300000, guid: f9913babef3bd4d4ca36d791e4fe28fb, type: 3}
   walk: {fileID: 8300000, guid: bf31da04b4e0dd54f9335c472f050941, type: 3}
+  playerHurt: {fileID: 8300000, guid: afc43946623544d40af1e2ef147ef2eb, type: 3}
+  playerBuild: {fileID: 8300000, guid: 76c37f8372e4c9f4d9d926774fb2550a, type: 3}
   hit: {fileID: 8300000, guid: 9fb8c18aa40d17844a3b8cf962e0300d, type: 3}
   laserMinion: {fileID: 8300000, guid: 67c64d94984fa9e4794331be540072fb, type: 3}
   stomp: {fileID: 8300000, guid: e09155c000da2924eb3401f4206e99c2, type: 3}

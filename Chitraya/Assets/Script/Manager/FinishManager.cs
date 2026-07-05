@@ -24,6 +24,6 @@ public class FinishManager : MonoBehaviour
 
     public void GameFinished()
     {
-        SceneController.instance.MainMenu();
+        SceneController.instance.LoadSceneName("EndingScene");
     }
 }

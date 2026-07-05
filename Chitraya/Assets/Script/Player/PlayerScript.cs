@@ -54,6 +54,7 @@ public class PlayerScript : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        SoundManager.instance.PlaySFX(SoundManager.instance.playerHurt);
         uiManager.UpdateHealthUI();
         StartCoroutine(FlashAnimationDamage());
 
