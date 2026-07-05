@@ -285,10 +285,10 @@ MonoBehaviour:
   onPrepShoot: 0
   inRange: 0
   damage: 1
-  attackDelay: 0.2
-  warningDelay: 0.2
+  attackDelay: 0.7
+  warningDelay: 0.7
   attackDuration: 0.1
-  attackCooldown: 0.5
+  attackCooldown: 1.5
   currCooldown: 0
   knockbackForced: 10
   effectX: -1

@@ -6,13 +6,15 @@ public class PlayerAttack : MonoBehaviour
     [Header("Range")]
     [SerializeField] private GameObject weaponBulletPrefab;
     [SerializeField] private Transform weaponSpawner;
-    [SerializeField] private float cooldown;
+    [SerializeField] private float cooldownRange;
     [SerializeField] private bool canAttack;
     [SerializeField] private int bulletDamage = 1;
 
     [Header("Melee")]
     [SerializeField] private CapsuleCollider2D weaponCollider;
     [SerializeField] private int meleeDamage = 1;
+    [SerializeField] private float cooldownMelee;
+
 
     [Header("Reference")]
     [SerializeField] private PlayerMovement playerMovement;
@@ -31,13 +33,13 @@ public class PlayerAttack : MonoBehaviour
     public void MeleeDoneAttack()
     {
         weaponCollider.enabled = false;
-        DoneAttacking();
+        DoneAttacking(cooldownMelee);
     }
 
     public void ShootProjectile()
     {
         canAttack = false;
-        DoneAttacking();
+        DoneAttacking(cooldownRange);
         GameObject x = Instantiate(weaponBulletPrefab, weaponSpawner.position, Quaternion.identity);
         PlayerBulletScript playerBulletScript = x.GetComponent<PlayerBulletScript>();
         playerBulletScript.SetUp(playerMovement.LastDirection, bulletDamage);
@@ -57,10 +59,10 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    IEnumerator cooldownAttack()
+    IEnumerator cooldownAttack(float x)
     {
         canAttack = false;
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(x);
         canAttack = true;
     }
 
@@ -83,8 +85,8 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void DoneAttacking()
+    public void DoneAttacking(float x)
     {
-        StartCoroutine(cooldownAttack());
+        StartCoroutine(cooldownAttack(x));
     }
 }

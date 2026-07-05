@@ -938,7 +938,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1349,7 +1349,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1397,10 +1397,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1080940089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.7208, y: 117.559814}
-  m_SizeDelta: {x: 627.0269, y: 287.4}
+  m_AnchorMin: {x: 0.039203886, y: 0.09860892}
+  m_AnchorMax: {x: 0.923714, y: 0.7337821}
+  m_AnchoredPosition: {x: 9.777618, y: 5.4212646}
+  m_SizeDelta: {x: -11.969971, y: 0.43359375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &398949488
 MonoBehaviour:
@@ -1422,36 +1422,45 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'AI Used (Gemini) :
+  m_text: 'Asset Used :
 
-    Help for debugging
+    - Game Input Controller Icons Free - Amanz
 
-    Help fixing bug
+    - VT323
+    - Peter Hull
 
-    Help
-    give idea about the code (how to make the logic)
+    - slime splat 3 - floraphonic
 
+    - Footsteps on stairs_01
+    - 121053699 (Freesound)
 
-    Content Use AI :
+    - Jump from a chair - horcasitas (Freesound)
 
-    groundCheck
+    -
+    Lasergun - kasa90 (Freesound)
 
-    Fixing
-    bug spawn platform when player not moved
+    - 062708_Laser Charging - Freesound Community
 
-    Fixing bug bad logic at enemy ai
+    -
+    EDM Zap
 
-    Help
-    draw gizmos
+    - Explosion - steveygos93 (Freesound)
 
-    Change Single Raycast into Multiple Raycast
+    - BASE AGGRESSIVA CANZONE
+    AGGRESSIVA MUSICA FREE - USE RAP TRAP - Robertothenice
 
-    Help Learning
-    About Raycast
+    - Heroic (The entry
+    of Actor) bgm - fictionvfxstudio
 
-    Help Learning About Light
+    - Retro hurt 1 - Driken5482
 
-'
+    - Hurt_C_08
+    - cabled_mess (Freesound)
+
+    - Sword Swipes - deleted_user_6479820 (Freesound)
+
+    -
+    splat - zolopher (Freesound)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccc00946ad77f824d889655af6cfcf98, type: 2}
   m_sharedMaterial: {fileID: 5359180099136871398, guid: ccc00946ad77f824d889655af6cfcf98, type: 2}
@@ -1682,7 +1691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &453888106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2299,11 +2308,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1080940089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000045776, y: 637.5598}
-  m_SizeDelta: {x: 433.65, y: 125.0383}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.000030517578, y: -46}
+  m_SizeDelta: {x: 433.65, y: 125.03833}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &717433789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2672,6 +2681,7 @@ GameObject:
   - component: {fileID: 866977074}
   - component: {fileID: 866977073}
   - component: {fileID: 866977072}
+  - component: {fileID: 866977075}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2753,6 +2763,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &866977075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866977071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &976969815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2801,10 +2855,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2943,7 +2997,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3127,10 +3181,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1080940089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.7208, y: 368.25983}
-  m_SizeDelta: {x: 627.0269, y: 287.4}
+  m_AnchorMin: {x: 0.06136822, y: 0.7574637}
+  m_AnchorMax: {x: 0.923714, y: 0.88770956}
+  m_AnchoredPosition: {x: 1.7790833, y: 3.1212158}
+  m_SizeDelta: {x: 4.0269165, y: 7.4000244}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1073816454
 MonoBehaviour:
@@ -3355,8 +3409,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -224.55981}
-  m_SizeDelta: {x: 0, y: 449.1196}
+  m_AnchoredPosition: {x: -0.000030517578, y: -554.42126}
+  m_SizeDelta: {x: 0, y: 1108.8425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080940090
 MonoBehaviour:
@@ -4899,11 +4953,11 @@ RectTransform:
   - {fileID: 1803334647}
   m_Father: {fileID: 1080940089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.7208, y: -651.4402}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 48}
   m_SizeDelta: {x: 223.7414, y: 92.047}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1943761949
 MonoBehaviour:
   m_ObjectHideFlags: 0
