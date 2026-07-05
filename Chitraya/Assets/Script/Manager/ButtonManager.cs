@@ -9,7 +9,7 @@ public class ButtonManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneController.instance.StartGame();
+        SceneController.instance.StartIntro();
     }
     public void Setting()
     {

@@ -20,11 +20,20 @@ public class SceneController : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("TestScene");
     }
-    
+    public void StartIntro()
+    {
+        SceneManager.LoadScene("IntroScene");
+    }
+
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void LoadSceneName(string x)
+    {
+        SceneManager.LoadScene(x);
     }
 }
